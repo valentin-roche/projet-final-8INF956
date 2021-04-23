@@ -14,6 +14,9 @@ var root = {
   hello: () => {
     return 'Hello world!';
   },
+  add: () => {
+      return 'ajout'
+  }
 };
  
 var app = express();
