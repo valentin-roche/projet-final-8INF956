@@ -6,6 +6,7 @@ var { buildSchema } = require('graphql');
 var schema = buildSchema(`
   type Query {
     getPerson(p_name : String!) : Person
+    hello : String
   }
 
   type Mutation {
@@ -34,7 +35,8 @@ class Person {
 }
 
 var persons = {
-  "Valentin" : new Person("Valentin", 23, 1.83)
+  "Valentin" : new Person("Valentin", 23, 1.83),
+  "Florent" : new Person("Florent", 22, 1.92)
 }
 
 // The root provides a resolver function for each API endpoint
@@ -45,6 +47,9 @@ var root = {
   addPerson: ({person}) => {
     persons[person.name] = person
     return persons[person.name]
+  },
+  hello: () => {
+    return "Hello World!"
   }
 };
  
