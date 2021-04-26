@@ -1,8 +1,12 @@
 const fetch = require('node-fetch');
 
-var query = `{
-    add
-  }`;
+var query = `    {
+  getPerson(p_name: "Valentin") {
+      name
+      age
+      height
+  }
+}`;
    
   fetch('http://localhost:4000/graphql', {
     method: 'POST',

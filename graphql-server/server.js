@@ -5,18 +5,46 @@ var { buildSchema } = require('graphql');
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
   type Query {
-    hello: String,
-    add: String
+    getPerson(p_name : String!) : Person
+  }
+
+  type Mutation {
+    addPerson(person : PersonInput!) : Person
+  }
+
+  type Person {
+    name : String,
+    age: Int,
+    height: Float
+  }
+
+  input PersonInput {
+    name : String,
+    age: Int,
+    height: Float
   }
 `);
  
+class Person {
+  constructor(name, age, height) {
+    this.name = name
+    this.age = age
+    this.height = height
+  }
+}
+
+var persons = {
+  "Valentin" : new Person("Valentin", 23, 1.83)
+}
+
 // The root provides a resolver function for each API endpoint
 var root = {
-  hello: () => {
-    return 'Hello world!';
+  getPerson: ({p_name}) => {
+    return persons[p_name]
   },
-  add: () => {
-      return 'ajout'
+  addPerson: ({person}) => {
+    persons[person.name] = person
+    return persons[person.name]
   }
 };
  

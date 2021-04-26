@@ -1,0 +1,21 @@
+Ajout d'une personne :
+    mutation {
+        addPerson(person: {
+            name: "John",
+            age: 32,
+            height : 1.69
+        }) {
+            name,
+            age,
+            height
+        }
+    }
+
+requête pour récupérer une personne :
+    {
+        getPerson(p_name: "Valentin") {
+            name
+            age
+            height
+        }
+    }
