@@ -6,7 +6,6 @@ var { buildSchema } = require('graphql');
 var schema = buildSchema(`
   type Query {
     getPerson(p_name : String!) : Person
-    hello : String
   }
 
   type Mutation {
@@ -47,9 +46,6 @@ var root = {
   addPerson: ({person}) => {
     persons[person.name] = person
     return persons[person.name]
-  },
-  hello: () => {
-    return "Hello World!"
   }
 };
  
